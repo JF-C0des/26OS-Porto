@@ -6,15 +6,17 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 
-> An interactive retro operating system desktop environment web portfolio designed to simulate a classic Windows (95/98) workstation. Built with **React 19**, **Vite**, **Tailwind CSS**, and **`react-rnd`**, featuring authentic BIOS boot sequences, multi-window management, an MS-DOS prompt simulator, and Web Audio API PC speaker sound synthesis.
+> An interactive retro operating system desktop environment web portfolio designed to simulate a classic Windows (95/98) workstation. Built with **React 19**, **Vite**, **Tailwind CSS**, and **`react-rnd`**, featuring authentic BIOS boot sequences, CRT scanlines & low-res monitor filters, multi-window management, custom themes & wallpapers, an MS-DOS prompt simulator, and Web Audio API PC speaker sound synthesis.
 
 ---
 
 ## 🌟 Features
 
-### 🖥️ 1. Boot Screen & Audio Synthesizer
+### 🖥️ 1. Boot, Shutdown & CRT Visual Effects
 * **Retro BIOS Initialization (`BootScreen.jsx`)**: Simulates memory checks, IDE hard drive detection, resource loading streams, and user initialization prompts.
 * **OS Splash Screen (`SplashScreen.jsx`)**: Classic 90s startup screen with a segmented progress bar and synthesized startup chord.
+* **Termination & Reboot Protocol (`ShutDownScreen.jsx`)**: Authentic amber terminal shutdown sequence with safe power-off screen and system reboot button.
+* **CRT Glitch & Scanline Engine (`CRTGlitchOverlay.jsx` & `index.css`)**: Hardware-accelerated CRT scanlines, flicker animations, and a low-DPI CRT monitor filter (`contrast(105%) brightness(98%) blur(0.2px)` + `pixelated`) applied across all desktop applications.
 * **Web Audio API Sound Engine (`SoundContext.jsx`)**: Native browser PC speaker audio synthesizer providing retro clicks, error chimes, and startup chords without relying on external media files.
 
 ### 🪟 2. Window Management & Desktop System
@@ -24,7 +26,7 @@
   * **Dynamic Z-Index Depth**: Clicking or dragging any window automatically brings it to the top active layer.
   * **Controls**: Minimize (`_`), Maximize (`□`), Restore (`❐`), and Close (`X`) controls with event stop propagation.
   * **Bounds Checking**: Enforces parent boundaries so windows cannot be dragged off-screen or underneath the bottom taskbar.
-* **Taskbar & Start Menu (`Taskbar.jsx`)**: Classic Start button, multi-tiered retro Start Menu, task buttons with active/minimized toggles, system tray audio mute button, and live digital clock.
+* **Taskbar & Start Menu (`Taskbar.jsx`)**: Authentic vertical side-banner Start menu, multi-tiered retro program folders, task buttons with active/minimized toggles, system tray audio mute button, and live digital clock.
 
 ### 📦 3. Built-in Applications
 
@@ -32,7 +34,7 @@
 * **Retro Paper Document Design**: Vintage parchment paper styling with serif headers and purple underlined hyperlinks.
 * **Welcome Story**: Personal journey in software development, computers, photography, and engine tuning.
 * **Career & Education**: Details S1 Teknik Informatika coursework at **Universitas Esa Unggul** (GPA 3.2), RPL background at **SMK Bina Informatika**, and work experience (Clems Grafter Creative, Talent-Tech, Dama Integra Solusindo, GBI Jakarta).
-* **Resume Download**: Quick action button for CV access.
+* **Resume PDF Download**: Direct download button linking to `/CV_Jedidiah_Faith_Gracio.pdf`.
 
 #### 🚀 `ProjectsApp` — Coding & Campus Projects Showcase
 * **Filtered Portfolio**: Browse by *All Projects*, *Coding Projects*, or *Campus Projects*.
@@ -42,6 +44,9 @@
 #### 📊 `SkillsApp` — Technical Tools & Skills Matrix
 * Categorized breakdown across *Programming Languages*, *IT & Hardware Electronics*, *Developer Tools & IDEs*, and *Professional Capabilities*.
 * Visual retro segmented progress bars with percentage indicators.
+
+#### 🎨 `DisplayPropertiesApp` — Display Control Panel
+* Live CRT monitor preview with desktop wallpaper preset switching (Classic Teal, Cyberpunk Matrix, Retro Grid, Deep Space, Sunset Vaporwave) and OS color theme options (Win95 Teal, Dark Hacker, Amber Terminal, Rose Gold).
 
 #### 💻 `TerminalApp` — Interactive MS-DOS Prompt CLI
 * Functional CLI shell supporting commands: `help`, `whoami`, `skills`, `projects`, `contact`, `cat cv.txt`, `matrix` (digital rain animation), `date`, `sudo`, and `clear`.
@@ -104,23 +109,29 @@ Make sure you have **Node.js** (v18.0.0 or higher) and **npm** installed on your
 ├── index.html                           # SEO metadata & document root
 ├── vite.config.js                       # Vite configuration & process polyfill
 ├── package.json                         # Dependencies & npm scripts
+├── public/
+│   └── CV_Jedidiah_Faith_Gracio.pdf     # Public downloadable PDF resume
 ├── src/
 │   ├── main.jsx                         # App entry point with window.process polyfill
-│   ├── App.jsx                          # Root shell orchestrating Boot -> Splash -> Desktop states
-│   ├── index.css                        # Tailwind imports & custom Win95 outset/inset borders
+│   ├── App.jsx                          # Root shell orchestrating BIOS -> Splash -> Desktop -> Shutdown
+│   ├── index.css                        # Tailwind imports, retro CRT low-res filter, & Win95 bevels
 │   ├── context/
 │   │   ├── SoundContext.jsx             # Web Audio API sound synthesizer
+│   │   ├── ThemeContext.jsx             # Theme & desktop wallpaper context manager
 │   │   └── WindowContext.jsx            # Window manager state (zIndex, position, size, focus)
 │   ├── components/
 │   │   ├── BootScreen.jsx               # BIOS terminal initialization screen
 │   │   ├── SplashScreen.jsx             # Windows startup splash loading bar
+│   │   ├── ShutDownScreen.jsx           # Amber termination protocol & reboot screen
+│   │   ├── CRTGlitchOverlay.jsx         # CRT scanline & glitch animation overlay
 │   │   ├── Desktop.jsx                  # Main desktop canvas & icon grid
 │   │   ├── Taskbar.jsx                  # Start menu, window tabs, system tray, & clock
 │   │   └── Window.jsx                   # Draggable & resizable window wrapper (react-rnd)
 │   └── components/apps/
-│       ├── AboutApp.jsx                 # User profile & story page
+│       ├── AboutApp.jsx                 # User profile, story page & CV download link
 │       ├── ProjectsApp.jsx              # Coding & Campus projects catalog
 │       ├── SkillsApp.jsx                # Technical skills matrix
+│       ├── DisplayPropertiesApp.jsx     # Control Panel for wallpapers & color themes
 │       ├── TerminalApp.jsx              # Interactive MS-DOS prompt CLI
 │       └── ContactApp.jsx               # Outlook Express style mail composer
 ```

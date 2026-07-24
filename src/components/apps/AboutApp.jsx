@@ -90,12 +90,16 @@ export default function AboutApp() {
                   <h3 className="text-lg font-bold text-black font-serif">
                     Looking for my resume?
                   </h3>
-                  <button
-                    onClick={() => alert("CV Download Initiated: Jedidiah Faith Gracio (jdf1258@gmail.com)")}
-                    className="text-purple-800 font-bold underline hover:text-purple-950 text-sm flex items-center gap-1 mt-0.5 cursor-pointer"
+                  <a
+                    href="/CV_Jedidiah_Faith_Gracio.pdf"
+                    download="CV_Jedidiah_Faith_Gracio.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={playClick}
+                    className="text-purple-800 font-bold underline hover:text-purple-950 text-sm flex items-center gap-1 mt-0.5 cursor-pointer inline-flex"
                   >
                     <Download className="w-3.5 h-3.5" /> Click here to download it!
-                  </button>
+                  </a>
                 </div>
               </div>
 
