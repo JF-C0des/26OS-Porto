@@ -18,41 +18,50 @@ export default function AboutApp() {
 
       <div className="flex-1 flex overflow-hidden p-2 gap-2">
 
-        <div className="w-48 win95-outset bg-[#c0c0c0] p-2 flex flex-col gap-1 shrink-0">
-          <button
-            onClick={() => setActiveTab('welcome')}
-            className={`w-full text-left px-3 py-2 flex items-center gap-2 font-bold text-xs ${
-              activeTab === 'welcome' ? 'win95-outset-active bg-[#000080] text-white' : 'win95-outset hover:bg-gray-300'
-            }`}
-          >
-            <UserCheck className="w-4 h-4" /> Welcome & Story
-          </button>
-          
-          <button
-            onClick={() => setActiveTab('experience')}
-            className={`w-full text-left px-3 py-2 flex items-center gap-2 font-bold text-xs ${
-              activeTab === 'experience' ? 'win95-outset-active bg-[#000080] text-white' : 'win95-outset hover:bg-gray-300'
-            }`}
-          >
-            <Briefcase className="w-4 h-4" /> Work Experience
-          </button>
+        <div className="w-48 win95-outset bg-[#c0c0c0] p-2 flex flex-col gap-1 shrink-0 justify-between">
+          <div className="space-y-1">
+            <button
+              onClick={() => setActiveTab('welcome')}
+              className={`w-full text-left px-3 py-2 flex items-center gap-2 font-bold text-xs ${
+                activeTab === 'welcome' ? 'win95-outset-active bg-[#000080] text-white' : 'win95-outset hover:bg-gray-300'
+              }`}
+            >
+              <UserCheck className="w-4 h-4" /> Welcome & Story
+            </button>
+            
+            <button
+              onClick={() => setActiveTab('experience')}
+              className={`w-full text-left px-3 py-2 flex items-center gap-2 font-bold text-xs ${
+                activeTab === 'experience' ? 'win95-outset-active bg-[#000080] text-white' : 'win95-outset hover:bg-gray-300'
+              }`}
+            >
+              <Briefcase className="w-4 h-4" /> Work Experience
+            </button>
 
-          <button
-            onClick={() => setActiveTab('education')}
-            className={`w-full text-left px-3 py-2 flex items-center gap-2 font-bold text-xs ${
-              activeTab === 'education' ? 'win95-outset-active bg-[#000080] text-white' : 'win95-outset hover:bg-gray-300'
-            }`}
+            <button
+              onClick={() => setActiveTab('education')}
+              className={`w-full text-left px-3 py-2 flex items-center gap-2 font-bold text-xs ${
+                activeTab === 'education' ? 'win95-outset-active bg-[#000080] text-white' : 'win95-outset hover:bg-gray-300'
+              }`}
+            >
+              <GraduationCap className="w-4 h-4" /> Education & Specs
+            </button>
+          </div>
+
+          <a
+            href="/CV_Jedidiah_Faith_Gracio.pdf"
+            download="CV_Jedidiah_Faith_Gracio.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="w-full text-left px-3 py-2 flex items-center justify-center gap-2 font-bold text-xs win95-outset bg-[#000080] hover:bg-blue-900 text-white cursor-pointer mt-auto border-2"
           >
-            <GraduationCap className="w-4 h-4" /> Education & Specs
-          </button>
+            <Download className="w-4 h-4 text-cyan-300" /> Download CV
+          </a>
         </div>
-
 
         <div className="flex-1 win95-inset bg-[#e8e5dc] text-gray-900 p-6 overflow-y-auto font-serif selection:bg-purple-900 selection:text-white">
           {activeTab === 'welcome' && (
             <div className="max-w-2xl mx-auto space-y-6 leading-relaxed">
-              
-  
               <div className="space-y-2">
                 <h1 className="text-5xl font-black font-serif text-black tracking-tight drop-shadow-[1px_1px_0_rgba(255,255,255,0.8)]">
                   Welcome
@@ -94,11 +103,10 @@ export default function AboutApp() {
                     href="/CV_Jedidiah_Faith_Gracio.pdf"
                     download="CV_Jedidiah_Faith_Gracio.pdf"
                     target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={playClick}
-                    className="text-purple-800 font-bold underline hover:text-purple-950 text-sm flex items-center gap-1 mt-0.5 cursor-pointer inline-flex"
+                    rel="noreferrer"
+                    className="text-purple-800 font-bold underline hover:text-purple-950 text-sm inline-flex items-center gap-1 mt-0.5 cursor-pointer"
                   >
-                    <Download className="w-3.5 h-3.5" /> Click here to download it!
+                    <Download className="w-3.5 h-3.5" /> Click here to download CV (PDF)
                   </a>
                 </div>
               </div>
