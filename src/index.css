@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=MS+Sans+Serif&display=swap');
+@import "tailwindcss";
+
+:root {
+  --win-bg: #008080;
+  --win-gray: #c0c0c0;
+  --win-gray-light: #dfdfdf;
+  --win-gray-dark: #808080;
+  --win-gray-darkest: #000000;
+  --win-blue-start: #000080;
+  --win-blue-end: #1084d0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--win-bg);
+  font-family: 'MS Sans Serif', Tahoma, Geneva, sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Custom Win95 bevel borders */
+.win95-outset {
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  box-shadow: inset -1px -1px #808080, inset 1px 1px #dfdfdf;
+}
+
+.win95-outset-active {
+  background-color: #c0c0c0;
+  border-top: 2px solid #000000;
+  border-left: 2px solid #000000;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px #808080;
+}
+
+.win95-inset {
+  background-color: #ffffff;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px #000000;
+}
+
+.win95-titlebar-active {
+  background: linear-gradient(90deg, #000080 0%, #1084d0 100%);
+  color: #ffffff;
+}
+
+.win95-titlebar-inactive {
+  background: #808080;
+  color: #c0c0c0;
+}
+
+/* Retro scrollbars */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  background-image: radial-gradient(#808080 15%, transparent 16%);
+  background-size: 4px 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  box-shadow: inset -1px -1px #808080;
+}
+
+/* CRT Screen Effect Optional Overlay */
+.crt-overlay {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Terminal retro text */
+.font-vt323 {
+  font-family: 'VT323', monospace;
+}
+
+.font-mono-retro {
+  font-family: 'Share Tech Mono', monospace;
+}
