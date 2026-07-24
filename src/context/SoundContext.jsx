@@ -68,32 +68,43 @@ export const SoundProvider = ({ children }) => {
   };
 
   const playStartupSound = () => {
+    playBeep(800, 0.15, 'square');
+  };
+
+  const playWin95StartupSound = () => {
     if (!soundEnabled) return;
     try {
       const ctx = getAudioContext();
       if (!ctx) return;
 
+      // 2-second retro synth arpeggio chord chime (C4 -> E4 -> G4 -> C5 -> E5)
       const notes = [
-        { f: 261.63, start: 0, dur: 0.8 },   // C4
-        { f: 329.63, start: 0.2, dur: 0.8 }, // E4
-        { f: 392.00, start: 0.4, dur: 1.0 }, // G4
-        { f: 523.25, start: 0.6, dur: 1.6 }, // C5
-        { f: 659.25, start: 0.8, dur: 2.0 }, // E5
+        { freq: 261.63, start: 0.0,  dur: 2.0, type: 'triangle', gain: 0.10 },
+        { freq: 329.63, start: 0.20, dur: 1.8, type: 'sine',     gain: 0.12 },
+        { freq: 392.00, start: 0.40, dur: 1.6, type: 'sine',     gain: 0.12 },
+        { freq: 523.25, start: 0.60, dur: 1.4, type: 'sine',     gain: 0.14 },
+        { freq: 659.25, start: 0.85, dur: 1.15, type: 'sine',    gain: 0.10 },
       ];
 
-      notes.forEach(({ f, start, dur }) => {
+      notes.forEach(({ freq, start, dur, type, gain: maxGain }) => {
         const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(f, ctx.currentTime + start);
-        gain.gain.setValueAtTime(0.08, ctx.currentTime + start);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + start + dur);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
+        const gainNode = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + start);
+        
+        gainNode.gain.setValueAtTime(0.001, ctx.currentTime + start);
+        gainNode.gain.linearRampToValueAtTime(maxGain, ctx.currentTime + start + 0.06);
+        gainNode.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + start + dur);
+
+        osc.connect(gainNode);
+        gainNode.connect(ctx.destination);
+        
         osc.start(ctx.currentTime + start);
         osc.stop(ctx.currentTime + start + dur);
       });
-    } catch (e) {}
+    } catch (e) {
+      console.warn('Win95 startup sound error', e);
+    }
   };
 
   const playGlitchSound = (duration = 0.5) => {
@@ -122,7 +133,7 @@ export const SoundProvider = ({ children }) => {
   };
 
   return (
-    <SoundContext.Provider value={{ soundEnabled, setSoundEnabled, playBeep, playClick, playErrorSound, playStartupSound, playGlitchSound }}>
+    <SoundContext.Provider value={{ soundEnabled, setSoundEnabled, playBeep, playClick, playErrorSound, playStartupSound, playWin95StartupSound, playGlitchSound }}>
       {children}
     </SoundContext.Provider>
   );

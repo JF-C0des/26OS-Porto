@@ -7,12 +7,13 @@ import SplashScreen from './components/SplashScreen';
 import Desktop from './components/Desktop';
 import Taskbar from './components/Taskbar';
 import ShutDownScreen from './components/ShutDownScreen';
+import RebootScreen from './components/RebootScreen';
 
 export default function App() {
-  const [bootStep, setBootStep] = useState('bios'); // 'bios' | 'splash' | 'desktop' | 'shutdown'
+  const [bootStep, setBootStep] = useState('bios'); // 'bios' | 'splash' | 'desktop' | 'reboot' | 'shutdown'
 
   const handleRestartOS = () => {
-    setBootStep('bios');
+    setBootStep('reboot');
   };
 
   const handleShutDownOS = () => {
@@ -37,6 +38,10 @@ export default function App() {
                 <Desktop />
                 <Taskbar onRestartOS={handleRestartOS} onShutDownOS={handleShutDownOS} />
               </>
+            )}
+
+            {bootStep === 'reboot' && (
+              <RebootScreen onRebootComplete={() => setBootStep('bios')} />
             )}
 
             {bootStep === 'shutdown' && (

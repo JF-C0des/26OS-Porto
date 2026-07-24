@@ -3,10 +3,10 @@ import { useSound } from '../context/SoundContext';
 
 export default function SplashScreen({ onFinish }) {
   const [progress, setProgress] = useState(0);
-  const { playStartupSound } = useSound();
+  const { playWin95StartupSound } = useSound();
 
   useEffect(() => {
-    playStartupSound();
+    playWin95StartupSound();
     
     const interval = setInterval(() => {
       setProgress((prev) => {
@@ -57,7 +57,7 @@ export default function SplashScreen({ onFinish }) {
         </div>
 
         <div className="text-xs text-gray-500 italic">
-          Copyright (C) Portfolio OS - All Rights Reserved
+          Copyright (C) 26OS - All Rights Reserved
         </div>
       </div>
     </div>

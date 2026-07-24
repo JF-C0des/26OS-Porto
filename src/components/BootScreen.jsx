@@ -42,7 +42,7 @@ export default function BootScreen({ onBootComplete }) {
           if (prev.some((item) => item.text === log.text)) return prev;
           return [...prev, log];
         });
-        playBeep(400 + index * 70, 0.05, 'square');
+        playBeep(600, 0.04, 'square');
 
         if (index === BOOT_LOGS.length - 1) {
           setIsFinished(true);

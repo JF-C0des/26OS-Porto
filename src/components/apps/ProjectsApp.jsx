@@ -12,10 +12,10 @@ const PROJECTS_DATA = [
     id: 'proj-1',
     title: 'Clems Grafter Enterprise ERP System',
     category: 'coding',
-    tags: ['PHP', 'Fullstack', 'ERP', 'REST API', 'JavaScript'],
+    tags: ['.Net', 'Fullstack', 'ERP', 'REST API', 'JavaScript'],
     description: 'Enterprise Resource Planning (ERP) application developed at Clems Grafter Creative featuring backend API services, module integration, and responsive user interfaces.',
     highlights: [
-      'Engineered backend ERP application modules using Java',
+      'Engineered backend ERP application modules using Js',
       'Built responsive front-end user navigation with modern web tech',
       'Conducted rigorous testing and debugging phases for code quality'
     ],
@@ -89,6 +89,20 @@ const PROJECTS_DATA = [
     ],
     github: 'https://github.com/JF-C0des',
     status: 'PLANNED'
+  },
+
+  {
+    id: 'proj-7',
+    title: ' Interactive Audio Visualizer',
+    category: 'coding',
+    tags: ['Web Audio API', 'React', 'Canvas', 'Music'],
+    description:'An interactive web-based audio visualizer that transforms sound frequencies into real-time dynamic canvas animations using Web Audio API.',
+    highlights: [
+      'Real-time frequency & waveform rendering with HTML5 Canvas',
+      'Customizable visual themes & responsive audio sensitivity'
+    ],
+    github: 'https://github.com/JF-C0des/my-visualizer.git',
+    status: 'LIVE'
   }
 ];
 

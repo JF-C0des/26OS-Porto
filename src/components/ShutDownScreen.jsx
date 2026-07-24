@@ -27,7 +27,7 @@ export default function ShutDownScreen({ onPowerOn }) {
           if (prev.some((item) => item.text === log.text)) return prev;
           return [...prev, log];
         });
-        playBeep(350 - index * 50, 0.05, 'square');
+        playBeep(600, 0.04, 'square');
 
         if (index === SHUTDOWN_LOGS.length - 1) {
           setIsComplete(true);
@@ -42,7 +42,7 @@ export default function ShutDownScreen({ onPowerOn }) {
   };
 
   return (
-    <div className="fixed inset-0 w-screen h-screen bg-black text-amber-500 font-mono flex flex-col items-center justify-between p-8 z-50 select-none overflow-hidden">
+    <div className="fixed inset-0 w-screen h-screen bg-black text-green-400 font-mono flex flex-col items-center justify-between p-8 z-50 select-none overflow-hidden">
       <div className="absolute inset-0 crt-overlay pointer-events-none z-30" />
 
       {isGlitching && (
@@ -62,18 +62,18 @@ export default function ShutDownScreen({ onPowerOn }) {
       )}
 
       <div className="w-full max-w-2xl pt-6 relative z-10 pointer-events-none">
-        <div className="border-b border-amber-900/60 pb-2 text-amber-700 flex justify-between items-center text-xs">
+        <div className="border-b border-green-800 pb-2 text-green-500 flex justify-between items-center text-xs">
           <span>26OS TERMINATION PROTOCOL</span>
-          <span>SHUTDOWN_SEQUENCE_OK</span>
+          <span className="font-bold text-green-400">SHUTDOWN_SEQUENCE_OK</span>
         </div>
       </div>
 
       <div className="w-full max-w-2xl flex-1 flex flex-col justify-center my-6 space-y-6 relative z-10">
-        <div className="space-y-2.5 bg-amber-950/20 p-6 border border-amber-900/60 font-mono text-xs sm:text-sm shadow-inner">
+        <div className="space-y-2.5 bg-green-950/40 p-6 border border-green-800/80 font-mono text-xs sm:text-sm shadow-inner">
           {logs.map((item, idx) => (
             <div key={idx} className="flex items-center gap-3">
-              <span className="text-amber-700 font-bold">{item.time}</span>
-              <span className={idx === SHUTDOWN_LOGS.length - 1 ? 'text-amber-300 font-bold' : 'text-amber-500'}>
+              <span className="text-green-600 font-bold">{item.time}</span>
+              <span className={idx === SHUTDOWN_LOGS.length - 1 ? 'text-cyan-300 font-bold' : 'text-green-400'}>
                 {item.text}
               </span>
             </div>
@@ -83,10 +83,10 @@ export default function ShutDownScreen({ onPowerOn }) {
         {isComplete && (
           <div className="flex flex-col items-center space-y-6 pt-4 relative z-50 pointer-events-auto">
             <div className="text-center space-y-2 pointer-events-none">
-              <h1 className="text-xl sm:text-2xl font-bold tracking-wide text-amber-400">
+              <h1 className="text-xl sm:text-2xl font-bold tracking-wide text-cyan-300">
                 It is now safe to turn off your computer.
               </h1>
-              <p className="text-xs text-amber-600 font-mono">
+              <p className="text-xs text-green-500 font-mono">
                 26OS Workstation Session Terminated safely.
               </p>
             </div>
@@ -102,9 +102,9 @@ export default function ShutDownScreen({ onPowerOn }) {
         )}
       </div>
 
-      <div className="w-full max-w-2xl pt-3 pb-2 border-t border-amber-900/60 flex justify-between items-center text-xs text-amber-600 font-mono relative z-10 pointer-events-none">
+      <div className="w-full max-w-2xl pt-3 pb-2 border-t border-green-900 flex justify-between items-center text-xs text-green-600 font-mono relative z-10 pointer-events-none">
         <span>26OS SECURITY CORE v2.4.0</span>
-        <span>SYSTEM POWERED DOWN</span>
+        <span className="text-green-500 font-bold">SYSTEM POWERED DOWN</span>
       </div>
     </div>
   );
