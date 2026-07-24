@@ -1,21 +1,24 @@
 import React from 'react';
 import { Rnd } from 'react-rnd';
 import { useWindow } from '../context/WindowContext';
+import { useTheme } from '../context/ThemeContext';
 import { useSound } from '../context/SoundContext';
-import { UserCheck, Shield, Cpu, Terminal, Mail, Minus, Square, Copy, X } from 'lucide-react';
+import { UserCheck, Shield, Cpu, Terminal, Mail, Monitor, Minus, Square, Copy, X } from 'lucide-react';
 
 import AboutApp from './apps/AboutApp';
 import ProjectsApp from './apps/ProjectsApp';
 import SkillsApp from './apps/SkillsApp';
 import TerminalApp from './apps/TerminalApp';
 import ContactApp from './apps/ContactApp';
+import DisplayPropertiesApp from './apps/DisplayPropertiesApp';
 
 const APP_COMPONENTS = {
   about: AboutApp,
   projects: ProjectsApp,
   skills: SkillsApp,
   terminal: TerminalApp,
-  contact: ContactApp
+  contact: ContactApp,
+  display: DisplayPropertiesApp
 };
 
 const ICON_MAP = {
@@ -23,7 +26,8 @@ const ICON_MAP = {
   Shield,
   Cpu,
   Terminal,
-  Mail
+  Mail,
+  Monitor
 };
 
 export default function Window({ windowData }) {
@@ -35,6 +39,7 @@ export default function Window({ windowData }) {
     toggleMaximizeWindow,
     updateWindowPosition
   } = useWindow();
+  const { themeConfig } = useTheme();
   const { playClick } = useSound();
 
   const { id, title, iconName, isOpen, isMinimized, isMaximized, zIndex, position } = windowData;
@@ -88,14 +93,14 @@ export default function Window({ windowData }) {
         onClick={() => focusWindow(id)}
         className="win95-outset w-full h-full flex flex-col p-1 shadow-xl bg-[#c0c0c0]"
       >
-        {/* Title Bar - Drag Handle */}
         <div
           onDoubleClick={() => {
             playClick();
             toggleMaximizeWindow(id);
           }}
+          style={isActive ? { background: themeConfig.titlebarActive, color: themeConfig.titlebarTextColor } : undefined}
           className={`drag-handle flex items-center justify-between px-2 py-1 select-none font-bold text-xs cursor-move ${
-            isActive ? 'win95-titlebar-active' : 'win95-titlebar-inactive'
+            isActive ? '' : 'win95-titlebar-inactive'
           }`}
         >
           <div className="flex items-center gap-1.5 overflow-hidden pointer-events-none">
@@ -103,9 +108,8 @@ export default function Window({ windowData }) {
             <span className="truncate">{title}</span>
           </div>
 
-          {/* Window Control Buttons */}
           <div
-            className="no-drag flex items-center gap-1 shrink-0"
+            className="no-drag flex items-center gap-1 shrink-0 text-black"
             onMouseDown={(e) => e.stopPropagation()}
             onClick={(e) => e.stopPropagation()}
           >
@@ -154,7 +158,6 @@ export default function Window({ windowData }) {
           </div>
         </div>
 
-        {/* Window Content Container */}
         <div className="flex-1 w-full h-full overflow-hidden mt-1 cursor-default">
           {AppComponent ? <AppComponent /> : null}
         </div>

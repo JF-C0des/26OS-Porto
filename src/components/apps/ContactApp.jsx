@@ -27,7 +27,6 @@ export default function ContactApp() {
 
   return (
     <div className="h-full flex flex-col bg-[#c0c0c0] text-black text-sm select-text">
-      {/* Mailer Header Bar */}
       <div className="win95-outset bg-[#c0c0c0] p-2 flex items-center justify-between border-b">
         <div className="flex items-center gap-2">
           <Mail className="w-5 h-5 text-blue-900" />
@@ -36,7 +35,6 @@ export default function ContactApp() {
       </div>
 
       <div className="flex-1 win95-inset bg-white p-4 overflow-y-auto space-y-4">
-        {/* Contact Info Header */}
         <div className="win95-outset bg-gray-50 p-3 text-xs space-y-1.5 font-mono border-l-4 border-blue-800">
           <div className="flex items-center gap-2 text-blue-900 font-bold">
             <Mail className="w-3.5 h-3.5" /> Email: jdf1258@gmail.com
@@ -157,7 +155,6 @@ export default function ContactApp() {
         )}
       </div>
 
-      {/* Footer */}
       <div className="win95-outset bg-[#c0c0c0] px-2 py-0.5 text-xs flex justify-between text-gray-700 font-mono">
         <span>jdf1258@gmail.com</span>
         <span>github.com/JF-C0des</span>

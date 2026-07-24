@@ -96,8 +96,33 @@ export const SoundProvider = ({ children }) => {
     } catch (e) {}
   };
 
+  const playGlitchSound = (duration = 0.5) => {
+    if (!soundEnabled) return;
+    try {
+      const ctx = getAudioContext();
+      if (!ctx) return;
+
+      const bufferSize = ctx.sampleRate * duration;
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * 0.15;
+      }
+
+      const noise = ctx.createBufferSource();
+      noise.buffer = buffer;
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.08, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+
+      noise.connect(gain);
+      gain.connect(ctx.destination);
+      noise.start();
+    } catch (e) {}
+  };
+
   return (
-    <SoundContext.Provider value={{ soundEnabled, setSoundEnabled, playBeep, playClick, playErrorSound, playStartupSound }}>
+    <SoundContext.Provider value={{ soundEnabled, setSoundEnabled, playBeep, playClick, playErrorSound, playStartupSound, playGlitchSound }}>
       {children}
     </SoundContext.Provider>
   );

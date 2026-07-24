@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useWindow } from '../context/WindowContext';
+import { useTheme } from '../context/ThemeContext';
 import { useSound } from '../context/SoundContext';
 import Window from './Window';
-import { UserCheck, Shield, Cpu, Terminal, Mail, Monitor, HardDrive } from 'lucide-react';
+import { UserCheck, Shield, Cpu, Terminal, Mail, Monitor } from 'lucide-react';
 
 const DESKTOP_ICONS = [
   {
@@ -34,11 +35,18 @@ const DESKTOP_ICONS = [
     title: 'Contact Mailer',
     icon: Mail,
     color: 'bg-blue-900'
+  },
+  {
+    id: 'display',
+    title: 'Control Panel',
+    icon: Monitor,
+    color: 'bg-purple-900'
   }
 ];
 
 export default function Desktop() {
   const { windows, openWindow } = useWindow();
+  const { wallpaperConfig } = useTheme();
   const { playClick } = useSound();
   const [selectedIconId, setSelectedIconId] = useState(null);
 
@@ -61,9 +69,9 @@ export default function Desktop() {
   return (
     <div
       onClick={handleDesktopClick}
-      className="relative w-full h-[calc(100vh-36px)] bg-[#008080] overflow-hidden select-none p-4"
+      style={wallpaperConfig.style}
+      className="relative w-full h-[calc(100vh-36px)] overflow-hidden select-none p-4 transition-all duration-300 retro-desktop-screen"
     >
-      {/* Desktop Icons Grid */}
       <div className="grid grid-flow-col grid-rows-6 auto-cols-max gap-4 w-max h-full">
         {DESKTOP_ICONS.map((item) => {
           const Icon = item.icon;
@@ -95,7 +103,6 @@ export default function Desktop() {
         })}
       </div>
 
-      {/* Render Open Windows */}
       {Object.values(windows).map((win) => (
         <Window key={win.id} windowData={win} />
       ))}

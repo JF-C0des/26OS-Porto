@@ -75,7 +75,7 @@ const PROJECTS_DATA = [
       'Custom synthesized PC speaker sound synthesizer',
       'Interactive MS-DOS CLI shell with custom command execution'
     ],
-    github: 'https://github.com/JF-C0des',
+    github: 'https://github.com/JF-C0des/26OS-Porto.git',
     status: 'LIVE'
   },
   {
@@ -107,9 +107,7 @@ export default function ProjectsApp() {
 
   return (
     <div className="h-full flex flex-col bg-[#c0c0c0] text-black text-sm select-text">
-      {/* Top Toolbar */}
       <div className="win95-outset bg-[#c0c0c0] p-2 flex flex-wrap items-center justify-between gap-2 border-b">
-        {/* Filter Buttons */}
         <div className="flex gap-1">
           <button
             onClick={() => setFilter('all')}
@@ -143,7 +141,6 @@ export default function ProjectsApp() {
           </button>
         </div>
 
-        {/* Search Bar */}
         <div className="win95-inset bg-white px-2 py-0.5 flex items-center gap-1 w-48">
           <Search className="w-3.5 h-3.5 text-gray-500" />
           <input
@@ -156,7 +153,6 @@ export default function ProjectsApp() {
         </div>
       </div>
 
-      {/* Main Grid View */}
       <div className="flex-1 win95-inset bg-white p-3 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-3">
         {filteredProjects.map((project) => (
           <div
@@ -217,7 +213,6 @@ export default function ProjectsApp() {
         ))}
       </div>
 
-      {/* Project Spec Modal Dialog Overlay */}
       {selectedProject && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center p-4 z-50">
           <div className="win95-outset bg-[#c0c0c0] w-full max-w-lg p-1 shadow-2xl">
@@ -273,7 +268,6 @@ export default function ProjectsApp() {
         </div>
       )}
 
-      {/* Footer Status */}
       <div className="win95-outset bg-[#c0c0c0] px-2 py-0.5 text-xs flex justify-between text-gray-700 font-mono">
         <span>Jedidiah Portfolio | Showing {filteredProjects.length} Projects</span>
         <span>github.com/JF-C0des</span>

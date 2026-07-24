@@ -8,7 +8,7 @@ export default function AboutApp() {
 
   return (
     <div className="h-full flex flex-col bg-[#c0c0c0] text-black text-sm select-text">
-      {/* Top Explorer Menu Bar */}
+
       <div className="flex border-b border-gray-400 bg-[#c0c0c0] px-2 py-1 text-xs space-x-4">
         <span className="hover:bg-[#000080] hover:text-white px-1 cursor-pointer">File</span>
         <span className="hover:bg-[#000080] hover:text-white px-1 cursor-pointer">Edit</span>
@@ -17,7 +17,7 @@ export default function AboutApp() {
       </div>
 
       <div className="flex-1 flex overflow-hidden p-2 gap-2">
-        {/* Left Sidebar Navigation */}
+
         <div className="w-48 win95-outset bg-[#c0c0c0] p-2 flex flex-col gap-1 shrink-0">
           <button
             onClick={() => setActiveTab('welcome')}
@@ -47,12 +47,12 @@ export default function AboutApp() {
           </button>
         </div>
 
-        {/* Right Content Area - Styled Retro Parchment Paper */}
+
         <div className="flex-1 win95-inset bg-[#e8e5dc] text-gray-900 p-6 overflow-y-auto font-serif selection:bg-purple-900 selection:text-white">
           {activeTab === 'welcome' && (
             <div className="max-w-2xl mx-auto space-y-6 leading-relaxed">
               
-              {/* Header Title Section */}
+  
               <div className="space-y-2">
                 <h1 className="text-5xl font-black font-serif text-black tracking-tight drop-shadow-[1px_1px_0_rgba(255,255,255,0.8)]">
                   Welcome
@@ -65,7 +65,6 @@ export default function AboutApp() {
                 </p>
               </div>
 
-              {/* Intro Welcome Paragraph */}
               <p className="text-base text-gray-800 font-serif">
                 Thank you for taking the time to check out my portfolio. I really hope you enjoy exploring it as much as I enjoyed building it. If you have any questions or comments, feel free to contact me using{' '}
                 <button
@@ -83,7 +82,6 @@ export default function AboutApp() {
                 </a>.
               </p>
 
-              {/* Resume Banner Divider Box */}
               <div className="my-6 py-3 border-y-2 border-black flex items-center gap-4 bg-black/5 px-4 rounded-sm">
                 <div className="p-2 win95-outset bg-gray-200 text-black">
                   <Printer className="w-7 h-7 text-blue-900" />
@@ -101,7 +99,7 @@ export default function AboutApp() {
                 </div>
               </div>
 
-              {/* About Me Section */}
+
               <div className="space-y-3 pt-2">
                 <h2 className="text-2xl font-bold font-serif text-black border-b border-gray-400 pb-1">
                   About Me
@@ -114,7 +112,7 @@ export default function AboutApp() {
                 </p>
               </div>
 
-              {/* My Hobbies Section */}
+
               <div className="space-y-3 pt-2">
                 <h2 className="text-2xl font-bold font-serif text-black border-b border-gray-400 pb-1 flex items-center gap-2">
                   My Hobbies
@@ -124,7 +122,6 @@ export default function AboutApp() {
                 </p>
               </div>
 
-              {/* Closing Thanks */}
               <div className="pt-4 border-t border-gray-400 space-y-2 text-sm italic text-gray-700">
                 <p>
                   Thanks for reading about me! I hope you enjoy exploring the rest of my portfolio website and everything it has to offer. If you have any comments I would love to hear them—you can reach me through the{' '}
@@ -154,7 +151,6 @@ export default function AboutApp() {
               </h2>
               
               <div className="space-y-4 text-sm font-sans">
-                {/* Clems Grafter */}
                 <div className="win95-outset p-4 bg-white text-black">
                   <div className="flex flex-wrap justify-between font-bold text-blue-900 font-mono mb-1 text-sm">
                     <span>Fullstack Developer — Clems Grafter Creative</span>
@@ -167,7 +163,6 @@ export default function AboutApp() {
                   </ul>
                 </div>
 
-                {/* Talent-Tech */}
                 <div className="win95-outset p-4 bg-white text-black">
                   <div className="flex flex-wrap justify-between font-bold text-blue-900 font-mono mb-1 text-sm">
                     <span>General Affair IT Support — Talent-Tech</span>
@@ -180,7 +175,6 @@ export default function AboutApp() {
                   </ul>
                 </div>
 
-                {/* Dama Integra Solusindo */}
                 <div className="win95-outset p-4 bg-white text-black">
                   <div className="flex flex-wrap justify-between font-bold text-blue-900 font-mono mb-1 text-sm">
                     <span>Developer Assistant — Dama Integra Solusindo</span>
@@ -192,7 +186,6 @@ export default function AboutApp() {
                   </ul>
                 </div>
 
-                {/* GBI Jakarta */}
                 <div className="win95-outset p-4 bg-white text-black">
                   <div className="flex flex-wrap justify-between font-bold text-blue-900 font-mono mb-1 text-sm">
                     <span>Production Staff — GBI Jakarta</span>
@@ -235,7 +228,6 @@ export default function AboutApp() {
         </div>
       </div>
 
-      {/* Bottom Status Bar */}
       <div className="win95-outset bg-[#c0c0c0] px-2 py-0.5 text-xs flex justify-between text-gray-700 font-mono">
         <span>Jedidiah Faith Gracio - Portfolio Page</span>
         <span>ESA UNGGUL UNIVERSITY S1</span>

@@ -57,6 +57,17 @@ const INITIAL_WINDOWS = {
     zIndex: 1,
     position: { x: 260, y: 120, width: 560, height: 440 },
     component: 'ContactApp'
+  },
+  display: {
+    id: 'display',
+    title: 'Display Properties & Themes',
+    iconName: 'Monitor',
+    isOpen: false,
+    isMinimized: false,
+    isMaximized: false,
+    zIndex: 1,
+    position: { x: 200, y: 70, width: 580, height: 460 },
+    component: 'DisplayPropertiesApp'
   }
 };
 

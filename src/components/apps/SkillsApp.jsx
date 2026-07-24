@@ -7,12 +7,12 @@ const SKILLS_CATEGORIES = [
     name: 'Programming Languages',
     icon: Code,
     skills: [
-      { name: 'PHP (ERP & Web Systems)', level: 92, status: 'ADVANCED' },
-      { name: 'Python (Scripting & Automation)', level: 90, status: 'ADVANCED' },
-      { name: 'JavaScript / HTML / CSS / React', level: 90, status: 'ADVANCED' },
-      { name: 'C++ (Programming Logic)', level: 80, status: 'INTERMEDIATE' },
-      { name: '.NET / C#', level: 78, status: 'INTERMEDIATE' },
-      { name: 'Java (Object-Oriented)', level: 82, status: 'INTERMEDIATE' },
+      { name: 'PHP (ERP & Web Systems)', level: 65, status: 'INTERMEDIATE' },
+      { name: 'Python (Scripting & Automation)', level: 62, status: 'INTERMEDIATE' },
+      { name: 'JavaScript / HTML / CSS / React', level: 60, status: 'INTERMEDIATE' },
+      { name: 'C++ (Programming Logic)', level: 55, status: 'INTERMEDIATE' },
+      { name: '.NET / C#', level: 50, status: 'INTERMEDIATE' },
+      { name: 'Java (Object-Oriented)', level: 58, status: 'INTERMEDIATE' },
     ]
   },
   {
@@ -32,10 +32,10 @@ const SKILLS_CATEGORIES = [
     name: 'Developer Tools & IDEs',
     icon: Wrench,
     skills: [
-      { name: 'VS Code & Antigravity IDE', level: 95, status: 'EXPERT' },
-      { name: 'Git & Version Control', level: 90, status: 'ADVANCED' },
-      { name: 'MySQL & Relational Databases', level: 88, status: 'ADVANCED' },
-      { name: 'Production & Streaming Hardware', level: 90, status: 'ADVANCED' },
+      { name: 'VS Code & Antigravity IDE', level: 65, status: 'INTERMEDIATE' },
+      { name: 'Git & Version Control', level: 60, status: 'INTERMEDIATE' },
+      { name: 'MySQL & Relational Databases', level: 58, status: 'INTERMEDIATE' },
+      { name: 'Production & Streaming Hardware', level: 52, status: 'INTERMEDIATE' },
     ]
   },
   {
@@ -58,7 +58,6 @@ export default function SkillsApp() {
 
   return (
     <div className="h-full flex flex-col bg-[#c0c0c0] text-black text-sm select-text">
-      {/* Category Tabs Header */}
       <div className="win95-outset bg-[#c0c0c0] p-2 flex flex-wrap gap-1 border-b">
         {SKILLS_CATEGORIES.map((cat) => {
           const Icon = cat.icon;
@@ -79,7 +78,6 @@ export default function SkillsApp() {
         })}
       </div>
 
-      {/* Main Content Area */}
       <div className="flex-1 win95-inset bg-white p-4 overflow-y-auto space-y-4">
         <div className="border-b pb-2">
           <h2 className="text-base font-bold text-[#000080] flex items-center gap-2">
@@ -107,7 +105,6 @@ export default function SkillsApp() {
                 </div>
               </div>
 
-              {/* Retro Win95 Progress Bar */}
               <div className="win95-inset h-5 bg-white p-0.5 flex gap-0.5">
                 {Array.from({ length: 20 }).map((_, i) => (
                   <div
@@ -125,7 +122,6 @@ export default function SkillsApp() {
         </div>
       </div>
 
-      {/* Footer info */}
       <div className="win95-outset bg-[#c0c0c0] px-2 py-0.5 text-xs flex justify-between text-gray-700 font-mono">
         <span>Active Matrix: {activeCategory.name}</span>
         <span>ESA UNGGUL S1 INFORMATICS</span>

@@ -1,115 +1,147 @@
 import React, { useState, useEffect } from 'react';
 import { useSound } from '../context/SoundContext';
+import CRTGlitchOverlay from './CRTGlitchOverlay';
+
+const BOOT_LOGS = [
+  { text: 'Initializing 26OS CyberSec Core Kernel v2.4.0...', percent: '15%' },
+  { text: 'Checking CPU Registers & Memory Allocation...', percent: '28%' },
+  { text: 'Loading Cryptographic Modules & SHA-256 Keypairs...', percent: '42%' },
+  { text: 'Mounting Virtual File System (/dev/vda1)...', percent: '58%' },
+  { text: 'Initializing Network Interfaces & Firewall Rules (IPTABLES)...', percent: '71%' },
+  { text: 'Preloading System Sound Engine & CRT Shaders...', percent: '85%' },
+  { text: 'Spawning GUI Window Manager & Desktop Environment...', percent: '96%' },
+  { text: 'System Status: 100% OK - Welcome User.', percent: '100%' },
+];
 
 export default function BootScreen({ onBootComplete }) {
   const [ram, setRam] = useState(0);
-  const [loadedItems, setLoadedItems] = useState([]);
+  const [loadedLogs, setLoadedLogs] = useState([]);
   const [isFinished, setIsFinished] = useState(false);
-  const { playBeep } = useSound();
-
-  const RESOURCES = [
-    { name: 'keyboardKeydown5', percent: '63%' },
-    { name: 'keyboardKeydown6', percent: '68%' },
-    { name: 'environmentTexture', percent: '74%' },
-    { name: 'monitorSmudgeTexture', percent: '79%' },
-    { name: 'monitorShadowTexture', percent: '84%' },
-    { name: 'decorTexture', percent: '89%' },
-    { name: 'startup', percent: '95%' },
-    { name: 'office', percent: '100%' },
-  ];
+  const [isGlitching, setIsGlitching] = useState(false);
+  const { playBeep, playStartupSound } = useSound();
 
   useEffect(() => {
-    // RAM Counter animation
+    setLoadedLogs([]);
+    const timeouts = [];
+
+ 
     let currentRam = 0;
     const ramInterval = setInterval(() => {
-      currentRam += 1000;
-      if (currentRam >= 16000) {
-        currentRam = 16000;
+      currentRam += 4000;
+      if (currentRam >= 64000) {
+        currentRam = 64000;
         clearInterval(ramInterval);
       }
       setRam(currentRam);
-    }, 60);
+    }, 40);
 
-    // Resource loading sequential stream
-    RESOURCES.forEach((item, index) => {
-      setTimeout(() => {
-        setLoadedItems((prev) => [...prev, item]);
-        playBeep(500 + index * 50, 0.03, 'square');
+   
+    BOOT_LOGS.forEach((log, index) => {
+      const t = setTimeout(() => {
+        setLoadedLogs((prev) => {
+          if (prev.some((item) => item.text === log.text)) return prev;
+          return [...prev, log];
+        });
+        playBeep(400 + index * 70, 0.05, 'square');
 
-        if (index === RESOURCES.length - 1) {
+        if (index === BOOT_LOGS.length - 1) {
           setIsFinished(true);
+          playStartupSound();
         }
-      }, 800 + index * 250);
+      }, 600 + index * 520);
+      timeouts.push(t);
     });
 
-    return () => clearInterval(ramInterval);
+    return () => {
+      clearInterval(ramInterval);
+      timeouts.forEach(clearTimeout);
+    };
   }, []);
 
   const handleStartBoot = () => {
-    playBeep(1200, 0.15, 'sine');
-    onBootComplete();
+    if (isGlitching) return;
+    setRam(64000);
+    setLoadedLogs(BOOT_LOGS);
+    setIsFinished(true);
+    setIsGlitching(true);
   };
 
   return (
     <div
       onClick={handleStartBoot}
-      className="fixed inset-0 bg-black text-white font-mono text-sm sm:text-base p-6 sm:p-12 flex flex-col justify-between z-50 cursor-pointer overflow-hidden select-none"
+      className="fixed inset-0 min-h-screen h-screen w-full flex flex-col justify-between p-6 sm:p-8 bg-black text-green-400 font-mono text-xs sm:text-sm z-50 cursor-pointer overflow-hidden select-none pointer-events-auto relative"
     >
-      {/* Header Info */}
-      <div className="space-y-6">
-        {/* Top Branding Row */}
-        <div className="flex justify-between items-start leading-tight">
-          <div>
-            <p className="font-bold">Jedidiah,</p>
-            <p className="font-bold">JD Inc.</p>
-          </div>
-          <div className="text-right">
-            <p>Released: 01/13/2000</p>
-            <p>HHBIOS (C)2000 JD Inc.,</p>
-          </div>
+      <div className="absolute inset-0 crt-overlay pointer-events-none" />
+
+
+      {isGlitching && (
+        <CRTGlitchOverlay
+          duration={1200}
+          mode="shutdown"
+          onComplete={onBootComplete}
+        />
+      )}
+
+
+<div className="flex-1 space-y-4 w-full overflow-y-auto pb-16 pr-2">
+  
+
+  <div className="flex justify-between items-start leading-tight border-b border-green-800 pb-2 text-green-500 w-full">
+    <div>
+      <p className="font-bold text-white text-sm sm:text-base">26OS JD WORKSTATION</p>
+      <p className="text-gray-400 text-xs">Jedidiah Sec Architecture Inc.</p>
+    </div>
+    <div className="text-right text-gray-400 text-xs">
+      <p>Kernel: v2.4.0-release</p>
+      <p>BIOS Version: 26OS-SEC-2026</p>
+    </div>
+  </div>
+
+        <div className="space-y-0.5 text-gray-300 text-xs sm:text-sm">
+          <p className="font-bold text-green-300">PROCESSOR: Quad-Core SOC @ 3.40GHz</p>
+          <p>Checking System RAM : <span className="text-white font-bold">{ram} KB OK</span></p>
         </div>
 
-        {/* System Specs & RAM */}
-        <div className="space-y-1 pt-2">
-          <p className="font-bold">HSP S13 2000-2025 Special UC131S</p>
-          <p>HSP Showcase(tm) XX 113</p>
-          <p>Checking RAM : {ram} OK</p>
-        </div>
-
-        {/* Resources Loading List */}
-        <div className="pt-4 space-y-2">
-          <p className="font-bold tracking-wider">FINISHED LOADING RESOURCES</p>
-          <div className="space-y-1 pl-4">
-            {loadedItems.map((item, idx) => (
-              <div key={idx} className="flex items-center gap-4">
-                <span className="w-56 truncate">Loaded {item.name}</span>
-                <span className="text-gray-400">... {item.percent}</span>
+    
+        <div className="space-y-1 font-mono">
+          <p className="font-bold text-white tracking-widest border-b border-green-900 pb-0.5 text-xs">
+            [ SYSTEM INITIALIZATION STREAM ]
+          </p>
+          <div className="space-y-1 pt-0.5 pl-2">
+            {loadedLogs.map((item, idx) => (
+              <div key={idx} className="flex items-center justify-between gap-4 max-w-3xl">
+                <span className={idx === BOOT_LOGS.length - 1 ? 'text-cyan-300 font-bold' : 'text-green-400'}>
+                  &gt; {item.text}
+                </span>
+                <span className="text-green-600 font-bold shrink-0">[{item.percent}]</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Completion Message */}
+   
         {isFinished && (
-          <div className="pt-4 space-y-3">
-            <p className="font-bold text-white">
-              All Content Loaded, launching <span className="underline">'Jedidiah Portfolio Showcase'</span> V1.0
+          <div className="pt-3 space-y-3">
+            <p className="font-bold text-cyan-300 text-xs sm:text-sm animate-pulse">
+              ✓ ALL SECURITY MODULES LOADED SUCCESSFULLY.
             </p>
             
-            <div className="animate-pulse bg-white/10 text-white p-3 border border-white text-center max-w-lg mt-4">
-              [ CLICK ANYWHERE OR PRESS START TO BOOT ]
+            <div className="bg-green-950/60 border-2 border-green-500 text-green-200 p-3 text-center max-w-xl shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+              <p className="font-bold text-white tracking-wider text-xs sm:text-sm animate-bounce">
+                [ CLICK ANYWHERE TO BOOT WORKSTATION ]
+              </p>
             </div>
           </div>
         )}
       </div>
 
-      {/* Footer Instructions & Date */}
-      <div className="pt-8 border-t border-gray-900 flex justify-between items-end text-xs text-gray-300">
+ 
+      <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 sm:right-8 pt-3 border-t border-green-900 flex justify-between items-center text-xs text-green-600 font-mono z-10 pointer-events-none">
         <div>
-          Press <span className="font-bold text-white">DEL</span> to enter SETUP , <span className="font-bold text-white">ESC</span> to skip memory test
+          <span className="font-bold text-white">CLICK ANYWHERE</span> to Boot / Skip
         </div>
-        <div className="font-mono">
-          07/24/2026
+        <div>
+          STATUS: <span className="text-green-400 font-bold">READY</span> | {new Date().toLocaleDateString()}
         </div>
       </div>
     </div>
