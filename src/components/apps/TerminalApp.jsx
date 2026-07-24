@@ -71,8 +71,8 @@ export default function TerminalApp() {
             { type: 'output', text: '=== CODING & CAMPUS PROJECTS ===' },
             { type: 'output', text: '1. Clems Grafter Enterprise ERP System (Fullstack PHP)' },
             { type: 'output', text: '2. Dama Integra Software & Scripting Suite (PHP/Python)' },
-            { type: 'output', text: '3. Esa Unggul OS Simulator & Process Management (Campus)' },
-            { type: 'output', text: '4. Esa Unggul Web Portal & Relational Database (Campus)' },
+            { type: 'output', text: '3. POS & Sales Management Portal - Teras LA (Campus)' },
+            { type: 'output', text: '4. Task & Productivity Management Web App (Campus)' },
             { type: 'output', text: '5. Retro Windows OS Interactive Portfolio System (React 19)' }
           );
           break;

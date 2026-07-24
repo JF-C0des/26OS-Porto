@@ -38,30 +38,30 @@ const PROJECTS_DATA = [
   },
   {
     id: 'proj-3',
-    title: 'Operating System Simulator & Lab (Esa Unggul)',
+    title: 'POS & Sales Management Portal (Teras LA)',
     category: 'campus',
-    tags: ['C++', 'Python', 'Operating Systems', 'Process Management'],
-    description: 'Campus coursework project for S1 Teknik Informatika at Esa Unggul University implementing process scheduling, memory allocation, and system call simulation.',
+    tags: ['JavaScript', 'React', 'Tailwind CSS', 'REST API'],
+    description: 'Point of Sale (POS) and cashier web application designed to streamline transaction processing, order tracking, and sales reporting with responsive front-end integration.',
     highlights: [
-      'Simulated FIFO, Round Robin, and Priority Process Scheduling algorithms',
-      'Memory management and paging simulation module',
-      'Built as part of 4th-semester OS coursework (GPA 3.2)'
+      'Engineered responsive cashier interface & POS checkout workflow',
+      'Streamlined real-time transaction processing & order status tracking',
+      'Integrated REST API endpoints for sales reporting and inventory management'
     ],
-    github: 'https://github.com/JF-C0des',
+    github: 'https://github.com/JF-C0des/Teras-LA_FE.git',
     status: 'CAMPUS_PROJECT'
   },
   {
     id: 'proj-4',
-    title: 'Web Dev & Relational Database Portal (Esa Unggul)',
+    title: 'Task & Productivity Management Web App',
     category: 'campus',
-    tags: ['PHP', 'MySQL', 'JavaScript', 'HTML/CSS', 'Database Design'],
-    description: 'Campus fullstack web portal integrating normalized relational MySQL schemas with responsive front-end interfaces for university lab submissions.',
+    tags: ['PHP', 'MySQL', 'JavaScript', 'HTML/CSS'],
+    description: 'Interactive task management platform enabling structured activity tracking, state persistence, and deadline prioritization for personal workflow optimization.',
     highlights: [
-      'Designed 3NF database ERD diagrams and SQL triggers',
-      'Built full CRUD admin portal using PHP and Vanilla JS',
-      'Implemented secure user authentication and session cookies'
+      'Developed fullstack task management portal using PHP & MySQL',
+      'Implemented structured activity tracking & deadline prioritization',
+      'Created persistent state storage and responsive web interfaces'
     ],
-    github: 'https://github.com/JF-C0des',
+    github: 'https://github.com/JF-C0des/PW-2026.git',
     status: 'CAMPUS_PROJECT'
   },
   {
