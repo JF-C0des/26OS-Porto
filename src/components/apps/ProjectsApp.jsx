@@ -155,8 +155,8 @@ export default function ProjectsApp() {
           </button>
         </div>
 
-        <div className="win95-inset bg-white px-2 py-0.5 flex items-center gap-1 w-48">
-          <Search className="w-3.5 h-3.5 text-gray-500" />
+        <div className="win95-inset bg-white px-2 py-0.5 flex items-center gap-1 w-full sm:w-48">
+          <Search className="w-3.5 h-3.5 text-gray-500 shrink-0" />
           <input
             type="text"
             placeholder="Search projects..."

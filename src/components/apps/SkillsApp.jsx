@@ -91,13 +91,13 @@ export default function SkillsApp() {
 
         <div className="space-y-4">
           {activeCategory.skills.map((skill, index) => (
-            <div key={index} className="win95-outset p-3 bg-gray-50 space-y-1.5">
-              <div className="flex justify-between items-center text-xs font-bold">
-                <span className="text-blue-955 font-mono flex items-center gap-2">
-                  <span className="w-2 h-2 bg-blue-800 rounded-full inline-block" />
+            <div key={index} className="win95-outset p-2.5 sm:p-3 bg-gray-50 space-y-1.5">
+              <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-1 text-xs font-bold">
+                <span className="text-blue-955 font-mono flex items-center gap-1.5">
+                  <span className="w-2 h-2 bg-blue-800 rounded-full inline-block shrink-0" />
                   {skill.name}
                 </span>
-                <div className="flex gap-2 items-center">
+                <div className="flex gap-2 items-center self-end sm:self-auto">
                   <span className="bg-blue-100 text-blue-900 px-1.5 py-0.5 border border-blue-400 font-mono text-[10px]">
                     {skill.status}
                   </span>

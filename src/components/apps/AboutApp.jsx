@@ -16,35 +16,35 @@ export default function AboutApp() {
         <span className="hover:bg-[#000080] hover:text-white px-1 cursor-pointer">Help</span>
       </div>
 
-      <div className="flex-1 flex overflow-hidden p-2 gap-2">
+      <div className="flex-1 flex flex-col sm:flex-row overflow-hidden p-1.5 sm:p-2 gap-2">
 
-        <div className="w-48 win95-outset bg-[#c0c0c0] p-2 flex flex-col gap-1 shrink-0 justify-between">
-          <div className="space-y-1">
+        <div className="w-full sm:w-48 win95-outset bg-[#c0c0c0] p-2 flex flex-col gap-1 shrink-0 justify-between">
+          <div className="flex sm:flex-col gap-1 overflow-x-auto sm:overflow-visible">
             <button
               onClick={() => setActiveTab('welcome')}
-              className={`w-full text-left px-3 py-2 flex items-center gap-2 font-bold text-xs ${
+              className={`flex-1 sm:w-full text-left px-2 sm:px-3 py-1.5 sm:py-2 flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 font-bold text-xs shrink-0 ${
                 activeTab === 'welcome' ? 'win95-outset-active bg-[#000080] text-white' : 'win95-outset hover:bg-gray-300'
               }`}
             >
-              <UserCheck className="w-4 h-4" /> Welcome & Story
+              <UserCheck className="w-4 h-4 shrink-0" /> <span className="truncate">Welcome & Story</span>
             </button>
             
             <button
               onClick={() => setActiveTab('experience')}
-              className={`w-full text-left px-3 py-2 flex items-center gap-2 font-bold text-xs ${
+              className={`flex-1 sm:w-full text-left px-2 sm:px-3 py-1.5 sm:py-2 flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 font-bold text-xs shrink-0 ${
                 activeTab === 'experience' ? 'win95-outset-active bg-[#000080] text-white' : 'win95-outset hover:bg-gray-300'
               }`}
             >
-              <Briefcase className="w-4 h-4" /> Work Experience
+              <Briefcase className="w-4 h-4 shrink-0" /> <span className="truncate">Work Experience</span>
             </button>
 
             <button
               onClick={() => setActiveTab('education')}
-              className={`w-full text-left px-3 py-2 flex items-center gap-2 font-bold text-xs ${
+              className={`flex-1 sm:w-full text-left px-2 sm:px-3 py-1.5 sm:py-2 flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 font-bold text-xs shrink-0 ${
                 activeTab === 'education' ? 'win95-outset-active bg-[#000080] text-white' : 'win95-outset hover:bg-gray-300'
               }`}
             >
-              <GraduationCap className="w-4 h-4" /> Education & Specs
+              <GraduationCap className="w-4 h-4 shrink-0" /> <span className="truncate">Education</span>
             </button>
           </div>
 
@@ -53,13 +53,13 @@ export default function AboutApp() {
             download="CV_Jedidiah_Faith_Gracio.pdf"
             target="_blank"
             rel="noreferrer"
-            className="w-full text-left px-3 py-2 flex items-center justify-center gap-2 font-bold text-xs win95-outset bg-[#000080] hover:bg-blue-900 text-white cursor-pointer mt-auto border-2"
+            className="w-full text-left px-3 py-1.5 sm:py-2 flex items-center justify-center gap-2 font-bold text-xs win95-outset bg-[#000080] hover:bg-blue-900 text-white cursor-pointer mt-1 sm:mt-auto border-2"
           >
-            <Download className="w-4 h-4 text-cyan-300" /> Download CV
+            <Download className="w-4 h-4 text-cyan-300 shrink-0" /> Download CV
           </a>
         </div>
 
-        <div className="flex-1 win95-inset bg-[#e8e5dc] text-gray-900 p-6 overflow-y-auto font-serif selection:bg-purple-900 selection:text-white">
+        <div className="flex-1 win95-inset bg-[#e8e5dc] text-gray-900 p-3 sm:p-6 overflow-y-auto font-serif selection:bg-purple-900 selection:text-white">
           {activeTab === 'welcome' && (
             <div className="max-w-2xl mx-auto space-y-6 leading-relaxed">
               <div className="space-y-2">

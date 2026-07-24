@@ -66,13 +66,27 @@ const INITIAL_WINDOWS = {
     isMinimized: false,
     isMaximized: false,
     zIndex: 1,
-    position: { x: 200, y: 70, width: 580, height: 460 },
     component: 'DisplayPropertiesApp'
   }
 };
 
+const getInitialWindows = () => {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  if (!isMobile) return INITIAL_WINDOWS;
+
+  const mobileWindows = { ...INITIAL_WINDOWS };
+  Object.keys(mobileWindows).forEach((key) => {
+    mobileWindows[key] = {
+      ...mobileWindows[key],
+      isMaximized: true,
+      position: { x: 0, y: 0, width: window.innerWidth, height: window.innerHeight - 36 }
+    };
+  });
+  return mobileWindows;
+};
+
 export const WindowProvider = ({ children }) => {
-  const [windows, setWindows] = useState(INITIAL_WINDOWS);
+  const [windows, setWindows] = useState(getInitialWindows);
   const [activeWindowId, setActiveWindowId] = useState('about');
   const [maxZIndex, setMaxZIndex] = useState(10);
 
@@ -95,12 +109,14 @@ export const WindowProvider = ({ children }) => {
     const newZ = maxZIndex + 1;
     setMaxZIndex(newZ);
     setActiveWindowId(id);
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     setWindows((prev) => ({
       ...prev,
       [id]: {
         ...prev[id],
         isOpen: true,
         isMinimized: false,
+        isMaximized: isMobile ? true : prev[id].isMaximized,
         zIndex: newZ,
       },
     }));

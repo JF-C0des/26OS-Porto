@@ -50,15 +50,17 @@ export default function Window({ windowData }) {
   const IconComponent = ICON_MAP[iconName] || Terminal;
   const AppComponent = APP_COMPONENTS[id];
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
   return (
     <Rnd
       size={
-        isMaximized
+        isMaximized || isMobile
           ? { width: '100%', height: '100%' }
           : { width: position.width, height: position.height }
       }
       position={
-        isMaximized
+        isMaximized || isMobile
           ? { x: 0, y: 0 }
           : { x: position.x, y: position.y }
       }
@@ -66,13 +68,13 @@ export default function Window({ windowData }) {
       cancel=".no-drag"
       onDragStart={() => focusWindow(id)}
       onDragStop={(e, d) => {
-        if (!isMaximized) {
+        if (!isMaximized && !isMobile) {
           updateWindowPosition(id, { x: d.x, y: d.y });
         }
       }}
       onResizeStart={() => focusWindow(id)}
       onResizeStop={(e, direction, ref, delta, pos) => {
-        if (!isMaximized) {
+        if (!isMaximized && !isMobile) {
           updateWindowPosition(id, {
             width: ref.offsetWidth,
             height: ref.offsetHeight,
@@ -80,11 +82,11 @@ export default function Window({ windowData }) {
           });
         }
       }}
-      disableDragging={isMaximized}
-      enableResizing={!isMaximized}
+      disableDragging={isMaximized || isMobile}
+      enableResizing={!isMaximized && !isMobile}
       bounds="parent"
-      minWidth={320}
-      minHeight={240}
+      minWidth={280}
+      minHeight={200}
       style={{ zIndex }}
       className="absolute flex flex-col"
     >
@@ -120,7 +122,7 @@ export default function Window({ windowData }) {
                 minimizeWindow(id);
               }}
               onMouseDown={(e) => e.stopPropagation()}
-              className="no-drag win95-outset bg-[#c0c0c0] hover:bg-gray-300 w-5 h-4 flex items-center justify-center text-black font-bold border border-gray-600 cursor-pointer"
+              className="no-drag win95-outset bg-[#c0c0c0] hover:bg-gray-300 min-w-[22px] h-5 sm:w-5 sm:h-4 flex items-center justify-center text-black font-bold border border-gray-600 cursor-pointer active:translate-y-0.5"
               title="Minimize"
             >
               <Minus className="w-3 h-3 stroke-[3]" />
@@ -133,7 +135,7 @@ export default function Window({ windowData }) {
                 toggleMaximizeWindow(id);
               }}
               onMouseDown={(e) => e.stopPropagation()}
-              className="no-drag win95-outset bg-[#c0c0c0] hover:bg-gray-300 w-5 h-4 flex items-center justify-center text-black font-bold border border-gray-600 cursor-pointer"
+              className="no-drag win95-outset bg-[#c0c0c0] hover:bg-gray-300 min-w-[22px] h-5 sm:w-5 sm:h-4 flex items-center justify-center text-black font-bold border border-gray-600 cursor-pointer active:translate-y-0.5"
               title={isMaximized ? "Restore" : "Maximize"}
             >
               {isMaximized ? (
@@ -150,7 +152,7 @@ export default function Window({ windowData }) {
                 closeWindow(id);
               }}
               onMouseDown={(e) => e.stopPropagation()}
-              className="no-drag win95-outset bg-[#c0c0c0] hover:bg-red-600 hover:text-white w-5 h-4 flex items-center justify-center text-black font-bold border border-gray-600 cursor-pointer"
+              className="no-drag win95-outset bg-[#c0c0c0] hover:bg-red-600 hover:text-white min-w-[22px] h-5 sm:w-5 sm:h-4 flex items-center justify-center text-black font-bold border border-gray-600 cursor-pointer active:translate-y-0.5"
               title="Close"
             >
               <X className="w-3 h-3 stroke-[3]" />

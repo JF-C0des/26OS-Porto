@@ -50,14 +50,21 @@ export default function Desktop() {
   const { playClick } = useSound();
   const [selectedIconId, setSelectedIconId] = useState(null);
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
   const handleIconClick = (id) => {
     playClick();
     setSelectedIconId(id);
+    if (isMobile) {
+      openWindow(id);
+    }
   };
 
   const handleIconDoubleClick = (id) => {
-    playClick();
-    openWindow(id);
+    if (!isMobile) {
+      playClick();
+      openWindow(id);
+    }
   };
 
   const handleDesktopClick = (e) => {
@@ -70,9 +77,9 @@ export default function Desktop() {
     <div
       onClick={handleDesktopClick}
       style={wallpaperConfig.style}
-      className="relative w-full h-[calc(100vh-36px)] overflow-hidden select-none p-4 transition-all duration-300 retro-desktop-screen"
+      className="relative w-full h-[calc(100vh-36px)] overflow-hidden select-none p-3 sm:p-4 transition-all duration-300 retro-desktop-screen"
     >
-      <div className="grid grid-flow-col grid-rows-6 auto-cols-max gap-4 w-max h-full">
+      <div className="flex flex-col flex-wrap max-h-[calc(100vh-60px)] gap-2 sm:gap-4 w-max h-full">
         {DESKTOP_ICONS.map((item) => {
           const Icon = item.icon;
           const isSelected = selectedIconId === item.id;
@@ -82,17 +89,17 @@ export default function Desktop() {
               key={item.id}
               onClick={() => handleIconClick(item.id)}
               onDoubleClick={() => handleIconDoubleClick(item.id)}
-              className={`w-24 p-2 flex flex-col items-center justify-center gap-1.5 cursor-pointer rounded border border-transparent ${
+              className={`w-20 sm:w-24 p-1.5 sm:p-2 flex flex-col items-center justify-center gap-1 sm:gap-1.5 cursor-pointer rounded border border-transparent active:scale-95 transition-transform ${
                 isSelected
                   ? 'bg-[#000080]/60 border-dashed border-cyan-300'
                   : 'hover:bg-white/10'
               }`}
             >
-              <div className={`w-12 h-12 win95-outset flex items-center justify-center ${item.color} text-white shadow-md`}>
-                <Icon className="w-6 h-6" />
+              <div className={`w-10 h-10 sm:w-12 sm:h-12 win95-outset flex items-center justify-center ${item.color} text-white shadow-md`}>
+                <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
               <span
-                className={`text-xs text-center font-bold px-1 py-0.5 rounded leading-tight ${
+                className={`text-[11px] sm:text-xs text-center font-bold px-1 py-0.5 rounded leading-tight ${
                   isSelected ? 'bg-[#000080] text-white' : 'text-white drop-shadow-[0_1px_1px_rgba(0,0,0,1)]'
                 }`}
               >

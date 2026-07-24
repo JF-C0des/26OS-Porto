@@ -146,7 +146,7 @@ export default function ContactApp() {
               <button
                 type="submit"
                 onClick={playClick}
-                className="win95-outset bg-[#c0c0c0] hover:bg-gray-200 px-6 py-2 font-bold text-xs flex items-center gap-2 text-black border border-gray-600 shadow"
+                className="w-full sm:w-auto win95-outset bg-[#c0c0c0] hover:bg-gray-200 px-6 py-2 font-bold text-xs flex items-center justify-center gap-2 text-black border border-gray-600 shadow cursor-pointer active:translate-y-0.5"
               >
                 <Send className="w-4 h-4 text-blue-900" /> Send Message
               </button>

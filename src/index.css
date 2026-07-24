@@ -80,6 +80,22 @@ body {
   box-shadow: inset -1px -1px #808080;
 }
 
+/* Mobile scrollbar adjustments */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 /* CRT Screen Effect Scanlines Overlay */
 .crt-overlay {
   background: linear-gradient(

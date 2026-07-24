@@ -128,15 +128,15 @@ export default function Taskbar({ onRestartOS, onShutDownOS }) {
             {isStartOpen && (
               <div
                 onMouseDown={(e) => e.stopPropagation()}
-                className="absolute bottom-full left-0 mb-0.5 w-64 bg-[#c0c0c0] shadow-2xl p-1 z-50 flex border-2 border-t-white border-l-white border-b-gray-800 border-r-gray-800 select-none"
+                className="absolute bottom-full left-0 mb-0.5 w-[calc(100vw-16px)] max-w-xs sm:w-64 bg-[#c0c0c0] shadow-2xl p-1 z-50 flex border-2 border-t-white border-l-white border-b-gray-800 border-r-gray-800 select-none"
               >
-                <div className="bg-gradient-to-t from-[#000080] via-[#1084d0] to-[#000080] w-8 flex items-end justify-center pb-3 text-white font-bold select-none shrink-0 overflow-hidden">
-                  <span className="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap uppercase font-mono font-extrabold text-xs tracking-widest text-white drop-shadow">
+                <div className="bg-gradient-to-t from-[#000080] via-[#1084d0] to-[#000080] w-7 sm:w-8 flex items-end justify-center pb-3 text-white font-bold select-none shrink-0 overflow-hidden">
+                  <span className="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap uppercase font-mono font-extrabold text-[11px] sm:text-xs tracking-widest text-white drop-shadow">
                     <span className="text-cyan-200 font-normal mr-1">26OS</span> WORKSTATION
                   </span>
                 </div>
 
-                <div className="flex-1 py-1 space-y-0.5 text-xs text-black">
+                <div className="flex-1 py-1 space-y-0.5 text-xs text-black min-w-0">
                   <div className="px-3 py-1 font-bold text-blue-900 border-b border-gray-400 font-mono mb-1 truncate">
                     Jedidiah Sec Workstation
                   </div>
@@ -163,7 +163,7 @@ export default function Taskbar({ onRestartOS, onShutDownOS }) {
                     </button>
 
                     {programsSubMenuOpen && (
-                      <div className="absolute left-full bottom-0 ml-0.5 w-60 bg-[#c0c0c0] p-1 border-2 border-t-white border-l-white border-b-gray-800 border-r-gray-800 shadow-2xl z-50 space-y-0.5">
+                      <div className="absolute left-0 sm:left-full bottom-full sm:bottom-0 ml-0 sm:ml-0.5 w-full sm:w-60 bg-[#c0c0c0] p-1 border-2 border-t-white border-l-white border-b-gray-800 border-r-gray-800 shadow-2xl z-50 space-y-0.5">
                         <button
                           onClick={() => handleAppLaunch('about')}
                           className="w-full px-3 py-1.5 flex items-center gap-2.5 hover:bg-[#000080] hover:text-white text-left cursor-pointer transition-colors"
@@ -236,7 +236,7 @@ export default function Taskbar({ onRestartOS, onShutDownOS }) {
 
           <div className="w-0.5 h-6 bg-gray-400 border-r border-white mx-0.5 shrink-0" />
 
-          <div className="flex gap-1 overflow-x-auto flex-1 min-w-0 h-full py-0.5">
+          <div className="flex gap-1 overflow-x-auto flex-1 min-w-0 h-full py-0.5 no-scrollbar">
             {Object.values(windows).map((win) => {
               if (!win.isOpen) return null;
               const isActive = activeWindowId === win.id && !win.isMinimized;
@@ -249,14 +249,14 @@ export default function Taskbar({ onRestartOS, onShutDownOS }) {
                     playClick();
                     toggleWindow(win.id);
                   }}
-                  className={`h-7 max-w-[160px] min-w-[110px] px-2 flex items-center gap-1.5 text-xs truncate cursor-pointer ${
+                  className={`h-7 max-w-[140px] min-w-[36px] sm:min-w-[100px] px-1.5 sm:px-2 flex items-center gap-1.5 text-xs truncate cursor-pointer ${
                     isActive
                       ? 'win95-outset-active bg-gray-200 font-bold border-black'
                       : 'win95-outset bg-[#c0c0c0] hover:bg-gray-200'
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5 shrink-0" />
-                  <span className="truncate text-black">{win.title}</span>
+                  <span className="truncate text-black hidden xs:inline sm:inline">{win.title}</span>
                 </button>
               );
             })}

@@ -119,24 +119,24 @@ export default function DisplayPropertiesApp() {
           </div>
         )}
 
-        <div className="flex justify-end gap-2 pt-2 border-t border-gray-400">
+        <div className="flex flex-wrap sm:justify-end gap-2 pt-2 border-t border-gray-400">
           <button
             onClick={handleOK}
-            className="win95-outset bg-[#c0c0c0] hover:bg-gray-200 px-4 py-1 font-bold text-xs text-black border border-gray-600"
+            className="flex-1 sm:flex-initial win95-outset bg-[#c0c0c0] hover:bg-gray-200 px-4 py-1.5 font-bold text-xs text-black border border-gray-600 cursor-pointer active:translate-y-0.5"
           >
             OK
           </button>
 
           <button
             onClick={() => { playClick(); closeWindow('display'); }}
-            className="win95-outset bg-[#c0c0c0] hover:bg-gray-200 px-4 py-1 font-bold text-xs text-black border border-gray-600"
+            className="flex-1 sm:flex-initial win95-outset bg-[#c0c0c0] hover:bg-gray-200 px-4 py-1.5 font-bold text-xs text-black border border-gray-600 cursor-pointer active:translate-y-0.5"
           >
             Cancel
           </button>
 
           <button
             onClick={handleApply}
-            className="win95-outset bg-[#c0c0c0] hover:bg-gray-200 px-4 py-1 font-bold text-xs text-black border border-gray-600"
+            className="flex-1 sm:flex-initial win95-outset bg-[#c0c0c0] hover:bg-gray-200 px-4 py-1.5 font-bold text-xs text-black border border-gray-600 cursor-pointer active:translate-y-0.5"
           >
             Apply
           </button>

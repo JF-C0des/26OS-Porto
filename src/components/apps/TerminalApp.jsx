@@ -165,7 +165,7 @@ export default function TerminalApp() {
 
       <div className="flex-1 overflow-y-auto space-y-1">
         {history.map((item, index) => (
-          <div key={index} className={item.type === 'user' ? 'text-white' : 'text-green-400'}>
+          <div key={index} className={`break-words whitespace-pre-wrap ${item.type === 'user' ? 'text-white font-bold' : 'text-green-400'}`}>
             {item.text}
           </div>
         ))}
