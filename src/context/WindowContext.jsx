@@ -92,7 +92,7 @@ export const WindowProvider = ({ children }) => {
 
   const focusWindow = (id) => {
     if (!windows[id]) return;
-    const newZ = maxZIndex + 1;
+    const newZ = maxZIndex >= 50 ? 10 : maxZIndex + 1;
     setMaxZIndex(newZ);
     setActiveWindowId(id);
     setWindows((prev) => ({
@@ -106,7 +106,7 @@ export const WindowProvider = ({ children }) => {
   };
 
   const openWindow = (id) => {
-    const newZ = maxZIndex + 1;
+    const newZ = maxZIndex >= 50 ? 10 : maxZIndex + 1;
     setMaxZIndex(newZ);
     setActiveWindowId(id);
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;

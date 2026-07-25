@@ -24,7 +24,7 @@ export default function App() {
     <SoundProvider>
       <ThemeProvider>
         <WindowProvider>
-          <div className="w-screen h-screen overflow-hidden bg-black font-sans antialiased relative retro-screen">
+          <div className="w-screen h-screen h-[100dvh] overflow-hidden bg-black font-sans antialiased relative retro-screen">
             {bootStep === 'bios' && (
               <BootScreen onBootComplete={() => setBootStep('splash')} />
             )}

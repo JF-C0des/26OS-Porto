@@ -100,7 +100,7 @@ export default function Taskbar({ onRestartOS, onShutDownOS }) {
     <>
       <div
         style={{ backgroundColor: themeConfig.taskbarBg }}
-        className="fixed bottom-0 left-0 right-0 h-9 win95-outset flex items-center justify-between px-1 z-40 select-none transition-colors duration-300"
+        className="fixed bottom-0 left-0 right-0 h-9 win95-outset flex items-center justify-between px-1 z-[9999] select-none transition-colors duration-300"
       >
         <div className="flex items-center gap-1.5 h-full py-0.5 flex-1 min-w-0">
           <div ref={menuRef} className="relative shrink-0">
@@ -128,7 +128,7 @@ export default function Taskbar({ onRestartOS, onShutDownOS }) {
             {isStartOpen && (
               <div
                 onMouseDown={(e) => e.stopPropagation()}
-                className="absolute bottom-full left-0 mb-0.5 w-[calc(100vw-16px)] max-w-xs sm:w-64 bg-[#c0c0c0] shadow-2xl p-1 z-50 flex border-2 border-t-white border-l-white border-b-gray-800 border-r-gray-800 select-none"
+                className="absolute bottom-full left-0 mb-0.5 w-[calc(100vw-16px)] max-w-xs sm:w-64 bg-[#c0c0c0] shadow-2xl p-1 z-[10000] flex border-2 border-t-white border-l-white border-b-gray-800 border-r-gray-800 select-none"
               >
                 <div className="bg-gradient-to-t from-[#000080] via-[#1084d0] to-[#000080] w-7 sm:w-8 flex items-end justify-center pb-3 text-white font-bold select-none shrink-0 overflow-hidden">
                   <span className="[writing-mode:vertical-rl] rotate-180 whitespace-nowrap uppercase font-mono font-extrabold text-[11px] sm:text-xs tracking-widest text-white drop-shadow">
@@ -163,7 +163,7 @@ export default function Taskbar({ onRestartOS, onShutDownOS }) {
                     </button>
 
                     {programsSubMenuOpen && (
-                      <div className="absolute left-0 sm:left-full bottom-full sm:bottom-0 ml-0 sm:ml-0.5 w-full sm:w-60 bg-[#c0c0c0] p-1 border-2 border-t-white border-l-white border-b-gray-800 border-r-gray-800 shadow-2xl z-50 space-y-0.5">
+                      <div className="absolute left-0 sm:left-full bottom-full sm:bottom-0 ml-0 sm:ml-0.5 w-full sm:w-60 bg-[#c0c0c0] p-1 border-2 border-t-white border-l-white border-b-gray-800 border-r-gray-800 shadow-2xl z-[10001] space-y-0.5">
                         <button
                           onClick={() => handleAppLaunch('about')}
                           className="w-full px-3 py-1.5 flex items-center gap-2.5 hover:bg-[#000080] hover:text-white text-left cursor-pointer transition-colors"

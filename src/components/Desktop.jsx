@@ -77,9 +77,9 @@ export default function Desktop() {
     <div
       onClick={handleDesktopClick}
       style={wallpaperConfig.style}
-      className="relative w-full h-[calc(100vh-36px)] overflow-hidden select-none p-3 sm:p-4 transition-all duration-300 retro-desktop-screen"
+      className="relative w-full h-[calc(100vh-36px)] h-[calc(100dvh-36px)] overflow-hidden select-none p-3 sm:p-4 transition-all duration-300 retro-desktop-screen"
     >
-      <div className="flex flex-col flex-wrap max-h-[calc(100vh-60px)] gap-2 sm:gap-4 w-max h-full">
+      <div className="flex flex-col flex-wrap max-h-[calc(100vh-60px)] max-h-[calc(100dvh-60px)] gap-2 sm:gap-4 w-max h-full">
         {DESKTOP_ICONS.map((item) => {
           const Icon = item.icon;
           const isSelected = selectedIconId === item.id;
